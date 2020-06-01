@@ -1,0 +1,80 @@
+Rake is a software task management and build automation tool. 
+ The tool is written in the Ruby programming language and the Rakefiles use Ruby syntax. It was created by Jim Weirich.
+It allows the user to specify tasks and describe dependencies as well as to group tasks in a namespace.
+Rake uses Ruby's anonymous function blocks to define various tasks, allowing the use of Ruby syntax. It has a library of common tasks: for example, functions to do common file-manipulation tasks and a library to remove compiled files (the "clean" task). Rake is now part of the standard library from Ruby version 1.9 onward.
+ 
+Rake Tasks
+Each task definition consists of:
+•	task keyword
+•	The name that identifies the task
+•	do end block
+•	The code to be executed by the task
+In addition, you can specify input parameters for your tasks, and other tasks that are prerequisites.
+ 
+Default Task
+Remember to set a default task: It’s a good habit to specify a default task in each Rake file. If a user runs the rake utility without specifying a task, it automatically runs the default task in the Rakefile.
+ 
+Running Rake
+Rake
+Rake taskname
+Rake –T
+Rake –P
+Rake –A
+Rake -D
+Rake –help
+Rake –quiet taskname
+Rake –silent taskname
+Rake taskname[arguments]
+ 
+Dependent Tasks
+Rake allows you to define a list of other tasks that must run before the current task. These tasks are called dependent tasks.
+ 
+Task Description
+It is the overall description of the task. It is used for documentation and commenting purposes. It is important to write task description for all the tasks. The task would still work without the description , but it would not appear on listings.
+ 
+Namespaces
+Multiple Tasks with the Same Name: If you define two tasks with same name, Rake appends the second task of that name to the first. In order to avoid it we use namespaces
+ 
+Tasks with Parameters
+We can treat tasks just as functions with a specific role. The task can take input values and arguments from the user. If the task has both arguments and dependencies, then the arguments come first and dependencies later.
+ 
+Default Arguments
+For the tasks that are having input parameters or arguments, we can specify default arguments as in the case of Ruby programming language. If you do not give a value for an argument at the command-line, and the task does not specify a default value, the value of the argument is set to nil.
+ 
+Rake Actions
+Rake actions are what we perform inside rake tasks. There are generally 5 different types of rake actions. They are
+•	Ruby file
+It run other ruby files present in the directory
+•	Ruby Code
+We can write ruby code following the ruby syntax inside the tasks. We can even write some ruby code like require statements, variables etc. Outside of the all the tasks inside the rakefile
+•	Shell/Batch Commands
+We can perform shell commands using sh and batch commands using bat commands inside the tasks
+•	Other Tasks
+We can run other tasks from inside the another task. It is done by using the invoke method on the first task.
+•	FileUtiles
+Ruby provides inbuilt methods to perform operations on files and directories instead of depending on the shell and batch commands that are heavily dependent on the operating system. It lists all these methods under FileUtils module
+https://ruby-doc.org/stdlib-2.4.1/libdoc/fileutils/rdoc/FileUtils.html
+ 
+Variables
+We can access ruby variables inside the tasks just like we access the ruby code. We can even access the environment variables inside the rake tasks.
+ 
+Files and Directories
+We can create files and directories using the rake file and directory tasks. They create a file and directory if the file or directory doesn't exist. Directory tasks may not have either a code block, nor any prerequisites. Other tasks may use a directory task as a prerequisite
+ 
+Clean
+Rake includes two tasks to clean up a set of files, so that you do not need to write code to handle this kind of job. Simply require the rake/clean module, and add values to the FileLists called CLEAN and CLOBBER, which are part of the module. Any file that is in the CLEAN FileList will be deleted when you run the clean task. Similarly, clobber deletes anything included in the CLOBBER list. Set up the CLEAN list to specifically handle temporary build files, and CLOBBER to aggressively match all potentially unwanted files.
+ 
+Rules
+When a file is named as a prerequisite but does not have a file task defined for it, Rake will attempt to synthesize a task by looking at a list of rules supplied in the Rakefile.
+Suppose we were trying to invoke task “mycode.o”, but no task is defined for it. But the rakefile has a rule that look like this …
+rule '.o' => ['.c'] do |t|
+  sh "cc #{t.source} -c -o #{t.name}"
+end
+This rule will synthesize any task that ends in “.o”. It has a prerequisite a source file with an extension of “.c” must exist. If Rake is able to find a file named “mycode.c”, it will automatically create a task that builds “mycode.o” from “mycode.c”.
+If the file “mycode.c” does not exist, rake will attempt to recursively synthesize a rule for it.
+When a task is synthesized from a rule, the source attribute of the task is set to the matching source file. This allows us to write rules with actions that reference the source file.
+ 
+<<rakefile.rb>>
+ 
+Sent from Mail for Windows 10
+

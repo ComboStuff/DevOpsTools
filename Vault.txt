@@ -1,0 +1,76 @@
+Vault used to store sensitive data like passwd.
+This inf can be used manually or through application with appropriate credentials
+Secrets are encrypted
+Secret Engines:(Build_Engines)
+cubbyhole
+KV-secret
+identity
+system-sys(used to control vault)
+Human users authenticated by LDAP and active dir, aws iam, Git token
+Token-used to authenticate vault (Temporary)
+Policies-Determine the secrets which can be accessed
+
+Authentication methods:
+	Userpass
+	Github
+	Cloud
+	Approle
+	Kubernetes
+
+To list available auth methods
+	vault auth list
+
+To enable a auth method
+	vault auth enable<method name>
+
+enable the userpass auth method.
+	vault auth enable -path=userpass userpass
+
+Creating a userpass user
+	vault write auth/userpass/users/<usrname> password=<paswd>
+	or 
+	vault write auth/userpass/users/<username> policies=default password=<passwd>
+
+login using userpass
+	vault login -method=userpass username=<usrname> 
+	
+list login token accessors
+	vault list auth/token/accessors
+
+Policies perform auth on authenticated req.
+Policies decide the tokens accessibility to the secrets in vault
+Policies are given permissions explicitly.Policies are written in HCL
+
+List policies
+	>vault policy list
+
+Read contents of policy
+	>vault policy read <policy name>
+
+Create a new policy
+	Write a policy file(.HCL File)
+
+	vault policy write <policy name> <.HCL file>
+
+Creating a server
+	Set Configuration(.hcl file)
+
+	vault server -config=<config file path>
+	unseal
+		i.To get unseal keys
+			>vault operator init
+		ii.unseal(3-times)
+			>vault operator unseal <unseal token>
+
+displays new token credentials created. 
+	vault login that_token_value
+
+take back authentication:
+	vault token revoke that_token_value
+
+log back as root:
+	vault login $VAULT_DEV_ROOT_TOKEN_ID
+	
+to access vault server from the VM to Host using private ip
+	change the ip address im the config file 
+

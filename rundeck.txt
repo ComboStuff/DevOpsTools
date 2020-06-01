@@ -1,0 +1,31 @@
+﻿Rundeck is tool that runs a runbook(a set of instructions)
+Extends the automations to Self-Service Jobs
+No replacement of tools, scripts & codes.
+Instead it wraps up the tools like puppet, chef, terraform.
+has both Open-Source and Enterpise versions
+Easy to integrate.
+In house features :  
+    access control 
+    error-handling
+    logging
+    workflow control  etc
+installtion:
+	https://docs.rundeck.com/downloads.html
+	move to c drive and extract in a floder with name rundeck
+	execute java -jar rundeck-3.2.7-20200515.war
+	http://<hostname>:4440
+	refer: https://docs.rundeck.com/docs/administration/install/windows.html#folder-structure
+Access Control:
+    A RunDeck  grants users and user groups certain privileges to perform actions
+Projects
+    A Project is a place to separate management activity.
+Jobs 
+    A job has a sequence of steps
+Nodes
+    Either a physical or virtual instance 
+Commands
+    A  single executable string executed on a Node.
+Executions
+    a representation of the activity of a running or completed command or job.
+Plugins
+    Most of what Rundeck does is via one of its plugins. 

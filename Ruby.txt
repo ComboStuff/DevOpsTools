@@ -1,0 +1,146 @@
+iostream:
+	puts - prints the statement with and directs to a new line
+	print
+	gets 
+	gets.chop() - input().split()
+	gets.chomp() 
+varibles:
+	class varibles without initialzation @ :@name
+	class varibles with initialzation @@ :@@value=10
+	global with $ :$global_age=18
+	local varibles: value=10 
+	for printing varibles in puts or print :print("#{ varibles}") 
+	variable.class gives type
+Number:
+	100.class => Integer
+	100.124class => Float
+	100.next => 101
+	-50.abs => 50
+ 	10/3 =>3 (Integer)
+	10/3.0, 10.0/3, 10.0/3.0 => 3.333
+	123.23.round => 123
+    123.65.round =>124
+	123.65.to_i =>123
+	123.65.floor => 123
+	123.65.ceil =>124
+Stings:
+	+,<< =>Concat
+	"3" * 3 =>"333"
+	.reverse
+Arrays:
+	.size
+	.length
+	.reverse 
+    .reverse!(permanent)
+	.shuffle
+	.shuffle!(permanent)
+	.include?()
+	.delete_at()
+	.uniq
+	.uniq!
+	.compact
+	.compact!
+	.flatten
+	.flatten!
+	.join("token") returns a string
+	.push
+	.pop
+	.shift
+	.unshift
+	+ is for adding values into Arrays
+	- is for removing the values for Arrays
+Hashes:
+	.keys
+	.values
+	.length
+    .size
+	.to_a => 2d array is returns
+symbols:
+	has : in the fornt 
+	used in hashes mostly
+	similer to constants 
+ranges:
+	1..10=> inclusive
+	1...10=> exclusive
+constants:
+	All CAPS
+
+Conditonals:
+	Unless:
+		unless <Condition>
+			...
+		end
+	if:
+		if<Condition>
+			...
+		end
+	if else:
+		if<Condition>
+			...
+		elsif<condition>
+			...
+		else
+			...
+		end
+	switch case:
+		case <variable>
+		when <value>
+			...
+		when <value>
+			...
+		else
+			...
+		end
+	ternary:
+		<Contidion>?true:false
+	or operator:
+		x = y || z
+	
+Loops:
+	loop:
+		loop do
+			...
+		end
+	
+	break: to break 
+	next: jump to next loop
+	redo: redo the loop
+	retry: starts the whole loop over
+	while:
+		while<condition>
+			...
+		end 
+		
+	until:
+		until<Contidion>
+			...
+		end
+
+iterators:
+	Number:.times, .upto(value) ,.downto(value), step
+	Range: .each, .step
+	string: .each_line, .each_char, .each_byte
+	Arrays: .each, .each_index, .each_with_index
+	Hashes: .each, .each_key, .each_value, .each_pair
+
+	for:
+		for <var> in <range/array/hash/string>
+    		...
+		end 
+	
+exiting:
+   	exit
+	exit!
+	abort("<Message>")
+
+Funtion:
+	def <name>
+		...
+	end
+	calling - <name>
+		def <name>(variable)
+    		...
+		end
+	calling - <name>(parameter)
+	
+class:

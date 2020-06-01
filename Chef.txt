@@ -1,0 +1,129 @@
+﻿Chef uses Ruby 
+Chef is used to automate the process of building, deploying and managing the infrastructure 
+Chef is for Configuration management – CM refers to the process of maintenance of consistency over the course of products life time, i.e., maintaining integrity in the state of the computer system and applications running on it.  
+Some CM tools are: 
+	Chef 
+	Puppet 
+	Ansible 
+	RightScale 
+	Salt 
+	DIY 
+	CFEngine 
+Idempotency:
+	Chef has idempotency, advantage of chef over traditional scripting is idempotency 
+	Chef is Infrastructure as a code 
+
+Resources in Chef: 
+	Packages 
+	Files 
+	Directory
+	Services  
+	Mount points 
+	SymLinks 
+	Networking components 
+	Registry keys 
+	Bash scripts 
+	PowerShell scripts 
+	etc. 
+	refer: https://docs.chef.io/resources
+
+
+Commands: 
+	
+    Chefdk insta on centos7:
+        curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -c stable -v 0.18.30 
+
+	running a recipe:
+		chef-client --local-mode \<recipe_name.rb>   --local-mode says that we yet don't have chef server, do it locally 
+		or 
+		chef-client -z \<recipe_name.rb>
+
+	create a cookbook
+		chef generate cookbook <cookbook_name>   
+	
+	create a recipe
+		chef generate recipe <cookbook_name> <recipe_name> 
+	
+	create a template
+		chef generate template <cookbook_name> <template_name>
+
+	running a set of Recipes:
+		chef-client --local-mode --runlist "recipe[<cookbook_name>::<recipe_name>]"    
+		or
+		chef-client -z -r "recipe[<cookbook_name>::<recipe_name>]"  
+
+		chef-client --local-mode --runlist "recipe[<cookbook_name>]" runs the default recipe in the cookbook
+
+	Include_recipe:
+		Include_recipe '<cookbook_name>::<recipe_name>' used to include a other recipes inside a recipe
+	
+	knife:
+		Knife is a tool used to communicate with chef sevrer
+		knife cookbook:
+			knife cookbook list – lists all cookbooks on chef server,  
+			knife cookbook upload <cookbook_name>  -- to upload cookbooks to chef server 
+			for more details use: knife cookbook --help
+
+		knife node:
+			knife node list  -- lists all the nodes that are managed by our chef server 
+			Knife node show <node name>   
+			Knife node show <node_name>  -a ipaddress – here -a stand for attributes 
+			
+		knife bootstrap:
+			Knife bootstrap <domain name or pubic IP> -x <username> -P <password> --sudo –N <node name> -r "recipe[cookbook]" 
+		
+		to rerun a cookbook on node:
+		Sudo chef-client     run this in the node  
+		
+		
+		knife runlist:
+			Knife node run list set <node> "recipe[<cookbook>::<recipe_name>]" - to update the runlist of any node 
+
+			Knife node run list add <node> "recipe[<cookbook>::<recipe_name>]" - to add the runlist of any node 
+
+		knife databags:
+			Knife data bag create <databagname> – creates a databag in the server 
+
+			Knife data bag list – lists all the datagabs present 
+
+			Knife data bag from file <databagname> <destination path of actual databag in the local machine> 
+
+			Knife data bag show <databag>  
+		
+	berks:
+		berks install  - installs the cookbooks and its dependencies that are present in the meta-date file, from  supermarket 
+
+		berks upload  - uploads all the cookbooks to chef server 
+
+	policyfile:
+		to create a policyfile
+			chef generate policyfile
+		
+		to generate a lockfile:
+			chef-install
+		to push lock file:
+			chef push <group_name> <Policyfile.rb>
+		to bootstrap using policies:
+			knife bootstrap <ipaddress> -x <username> -P <password> --sudo -N <node node_name> --policy-group <group_name> --policy-name <policy_name> 
+		to show policies:
+			chef show-policy
+	
+	kitchen:	
+		Kitchen list 
+
+		kitchen create – creates specified Virtual machines 
+
+		Kitchen converge – installs chef inside VM and run cookbook 
+
+		Kitchen login – to login into VM to check manually 
+
+		Kitchen verify – to verify whether the requirements of inspec are met or not 
+
+	food critic:
+		ensures no error in the metadata
+		foodcritic <cookbookname>
+		refer: http://www.foodcritic.io/#
+	cookstyle:
+		ensures no styling errors in all the files.
+		cookstyle <Cookbook>
+		refer: https://docs.chef.io/workstation/cookstyle/ 

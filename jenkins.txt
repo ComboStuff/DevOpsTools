@@ -1,0 +1,65 @@
+Jenkins used for process automation
+open source
+
+Windows-Windows batch
+linux- shell
+Job:
+1.Discard build:max and time to store old builds
+2.github project-associate jenkin with github repo
+3.throttle build
+
+accessing a parameterized variable %varname%
+
+Making build periodically :
+    Select build periodically 
+    Specify time interval
+    Minute(0-59) Hour(0-23) Day-of-month(1-31) Month(1-12) Day-of-week(0-7)
+        *-specifies all valid values
+        a-b - specifies a range
+        a-b/ c- x steps thought the valid range a-b
+        Always use H before using minutes
+
+Email enabling:
+goto manage jenkins-> configure system-> email notifications(last)
+
+agent any-jenkins slave
+
+
+Jenkinsfile:
+    pipeline 
+    {
+        agent any
+        stages 
+        {
+            stage('Run_Rake')
+            {
+                steps
+                {
+                    echo "Running Rake File" 
+                }
+            }
+        }
+        post
+        {
+            always 
+            {
+                echo 'Reached the Post Build !'
+            }
+            success 
+            {
+                echo 'Successfull!'
+            }
+            failure 
+            {
+                echo 'Failed !'
+            }
+            unstable 
+            {
+                echo 'unstable'
+            }
+
+    }
+
+
+
+}

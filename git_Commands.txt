@@ -1,0 +1,17 @@
+Commands
+	git --version
+	git init
+	git add 
+	git status
+	git config --global user.name "" 
+	git config --global user.email "" 
+	git commit -m  "msg"
+	git remote add origin "url" 
+	git remote -v 
+	git push -u origin branch(master)(for the first name) && git push origin {branchname}
+	git checkout -b {branchname} //change the branch
+	git branch {branchname} // show all the branch
+	git merge {branchname}
+	git branch -d {branchname} //delete branch in local machine
+	git push origin --delete {branch name} //delete branch in github
+	git clone "url"

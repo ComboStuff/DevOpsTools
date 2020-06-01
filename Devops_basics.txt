@@ -1,0 +1,93 @@
+Intro:
+	devops=developement + operations
+	devops is not a tool it is a culture
+	came from agile
+	prioritize speed and stability
+	In devOps structure when an dev commits a code, automatic build and testing will start and qa will be able to test the code
+	when there is an error in the product the automated monitoring notifies the team about the error
+
+goals:
+	1.Fast time to market
+	2.few failures
+	3.immediate recovery from failure
+
+Build automation:
+	fast,consistent,portable,repeatable,reliable
+	The automation of the process of preparing code for deployment to a live environment 
+
+	continuous integration:
+	continuous small merges in the code
+
+	continuous delivery:
+	Means always maintaining the code in deployable state
+
+	continuous deployment:
+	deploying small changes to the production
+
+Infrastructure as code:
+	manage and provide infrastructure using code and automation
+
+	config mgmt:
+		maintaining and changing pieces of infrastructure in a stable,consistent and maintainable way
+
+	orchestration:
+		automation supporting processes and workflows
+
+	monitoring :
+		collection and presentation of data about performance and stability of services and infrastructure
+
+	microservices:
+		breaks an application into a small collection of loosely coupled services
+
+Tools for build automation and continuous integration:
+	Build automation:-
+	java-ant,maven,gradle
+	unix-make
+	js-npm,grunt,gulp
+
+	CI:-
+		jenkins
+		travisCI
+		BAMBOO
+
+tools for config mgmt:
+	Ansible
+	Puppet
+	chef
+
+Tools for virtualization and containeraization
+	contaneraization:-
+	Docker
+
+Tools for monitoring:
+	Types of monitoring:
+	1.Inf monitoring
+		1.SenSu
+		2.NewRelic-SaaS
+	2.App performance monitoring
+		1.AppDynamics
+		2.NewRelic
+	Elastic stack
+
+Tools for orchestration:
+	1.Docker Swarm
+	2.Kubernetes
+	3.Zookeeper
+	4.Terraform
+
+DevOps and Google cloud:
+	App engine-Paas
+	Google compute engine-Saas
+	cloud fns-Faas(Function as a service)
+	Cloud sdk
+	Stackdriver-monitoring
+	cloud deployment manager-Config mgmt
+	Google kubernetes-Orchestration
+
+Devops and azure:
+	CI,CDel,CDepl-Visual team services
+	orchestration-azure container registry,azure container service,azure web apps
+	monitoring-azure app insights
+
+Devops and aws:
+	CI,CD-Aws code build,code deploy, codepipeline

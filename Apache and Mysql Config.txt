@@ -1,0 +1,35 @@
+apache:
+	hostname -I | awk '{print $1}' gives ip
+	sudo ufw  app list  shows apps present 
+	Stop Apache: sudo systemctl stop apache2.service
+	Start Apache: sudo systemctl start apache2.service
+	Restart Apache: sudo systemctl restart apache2.service
+	Reload Apache: sudo systemctl reload apache2.service
+	cgi config:
+		goto /etc/apache2/sites-available
+		type sudo a2enmod cgid
+		restart server
+		add the script in the conf file:
+			ScriptAlias /cgi-bin/ /var/www/cgi-bin/
+			<Directory "/var/www/cgi-bin/">
+			AllowOverride none
+			Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+			SetHandler cgi-script
+			Order allow,deny
+			Allow from all
+			AddHandler .cgi-script .cgi .pl
+			</Directory>
+		create cgi-bin dir in /var/www
+
+mysql:
+	compliation:
+		sudo g++ -Wall -I/usr/include/cppconn -o testapp test_db.cpp -L/usr/lib -lmysqlcppconn
+	liberies:
+		sudo apt-get install  libmysqlcppconn-dev
+	grating permission:
+		goto etc/mysql/mysql.conf.d/mysqld.cnf
+    	edit bind-address to 0.0.0.0
+		login to mysql server
+    		>grant all privileges on *.* to 'root'@'%' identified by '(passwd)' with grant option;
+    		*.*-any database and any table
+    		root@'%' any ip address with root user credentials

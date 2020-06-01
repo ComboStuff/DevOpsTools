@@ -1,0 +1,52 @@
+provides VM.
+Single command line program using a single file format to build, run, and manage any VM 
+HashiCorp publish and share its products 
+primary purpose - create custom isolated development environments. 
+components - the CLI(Commad Line tool), Vagrantfiles(coded in ruby), and Vagrant Cloud(Market place of all VM).
+
+feature of Vagrant:
+	connect to Vagrant VM
+	folder sync
+	multipule networking
+	provide plugins 
+	provisions installing software and setting configurations.
+	multi machine Vagrantfiles
+
+running Vagrant:
+	vagrant init  - creates Vagrantfile with config as "base"
+	vagrant init <boxname> creates Vagrantfile with config as "boxname"
+	boxname="orginastioname/distubution and version"
+	vagrant up -creates the VM and loads it to the Virtualbox defaultly
+
+vagrant commands:
+	vagrant status(used in the same directory)
+	vagrant global-status(can access from any where)
+	vagrant hault id
+	vagrant ssh -connect the terminal of the VM
+	vagrant destory -delete all the resourses 
+	vagrant reload -restarts the box
+
+vagrant cloud:
+	app.vagrantup.com-url to the vagrant cloud
+
+Vagrantfile:
+	syncing:
+		config.vm.synced_folder "../<foldername>", "/vagrant_data"
+		networking:
+		config.vm.network "forwarded_port", guest: 80, host: 8080 -less secure than the below
+		and 	
+		config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1" -used to forward the port connect to the localhost
+		config.vm.network "private_network", ip: "192.168.33.10",type="dhcp"  - used to use private network ie host only accessable
+
+	graphics:
+    	vb.gui="true" gives graphical user interface
+
+	provisions:
+   		config.vm.provision "shell", path: "filepath"  used to run shell scripts 
+		memory:
+		vb.memory = "1024"   memorysize
+		vb.cpus="2"		number of cpus
+
+	vagrant provider:
+		vmstat -s - memory allocation 
+		lscpu - Virtualcpus

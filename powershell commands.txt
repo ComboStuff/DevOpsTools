@@ -1,0 +1,100 @@
+get-service {name}
+select-object
+where-object
+Test-Path
+get-alias
+set-alias
+out-file	{filepath}
+Get-Help about_Aliases
+Get-Service | Where-Object {$_.status -eq "stopped"}
+-whatif
+-confrim 
+
+
+
+loops
+    1.FOR
+        for (var;condition;update){
+            ....
+        }
+    2.FOREACH- used mainly for arrays
+        foreach($ele in $arr){
+            .....
+        }
+    3.WHILE
+        while(condition){
+            ....
+        }
+    4.DO-WHILE
+        do{
+            ....
+        }while(condition)
+
+functions
+    1.function definition
+        function<functionname>(<args>){
+            ....
+            ....
+            return
+        }
+    2.function call
+        <functionname> <args>
+    Note:Function definition should always be before fn call
+
+conditionals
+    1.IF
+        if(condition){
+            ....
+        }
+        elseif{
+            ....
+        }
+        else{
+            ....
+        }
+    2.Switch
+        Switch(value){
+            <value1>{
+                ....
+            }
+            <value2>}{
+                ....
+            }
+        }
+    
+operators
+    1.Arth- +,-,/,*,%
+    2.Comparision- 
+        1.eq-equals
+        2.ne-not equals
+        3.gt- greater than
+        4.ge- "        "   and equal
+        5.lt-less than
+        6.le-  "    "   and equal
+    4.Logical- AND,OR,NOT 
+
+array
+    $var=<val1>,<val2>.....
+    $var.length
+
+try..catch
+    try{
+        ....
+    }
+    catch(<errortype>){
+        ....
+    }
+
+Move-Item <source path> <destination path>
+
+
+https://gallery.technet.microsoft.com/scriptcenter/
+remote control:
+	linux:
+		ssh server -l username
+	windows:
+		Enable-PSRemoting -Force
+		Set-Item wsman:\localhost\client\trustedhosts *
+		Restart-Service WinRM
+		Test-WsMan COMPUTERNAME
+		Enter-PSSession -ComputerName COMPUTERNAME
